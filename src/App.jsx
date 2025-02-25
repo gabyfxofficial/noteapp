@@ -1,6 +1,11 @@
-// src/App.jsx
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { Box } from "@mui/material";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -75,4 +80,10 @@ function App() {
   );
 }
 
-export default App;
+export default function WrappedApp() {
+  return (
+    <Router basename="/noteapp">
+      <App />
+    </Router>
+  );
+}
