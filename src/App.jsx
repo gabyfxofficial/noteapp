@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -17,7 +11,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme/theme";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Componentă de protecție inline
+// Componentă de protecție pentru rutele private
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
@@ -80,10 +74,4 @@ function App() {
   );
 }
 
-export default function WrappedApp() {
-  return (
-    <Router basename="/noteapp">
-      <App />
-    </Router>
-  );
-}
+export default App;
