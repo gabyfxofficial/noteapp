@@ -17,6 +17,12 @@ const ProtectedRoute = ({ children }) => {
   return token ? children : <Navigate to="/login" replace />;
 };
 
+// Componentă pentru a preveni accesul la pagina de login dacă utilizatorul este logat
+const RedirectIfAuthenticated = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? <Navigate to="/" replace /> : children;
+};
+
 function App() {
   const location = useLocation();
   const showHeaderAndFooter = location.pathname !== "/login";
@@ -33,7 +39,15 @@ function App() {
         {showHeaderAndFooter && <Header />}
         <Box sx={{ flex: 1, pt: showHeaderAndFooter ? "70px" : 0 }}>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* Dacă utilizatorul este logat, îl redirecționează automat spre Home */}
+            <Route
+              path="/login"
+              element={
+                <RedirectIfAuthenticated>
+                  <Login />
+                </RedirectIfAuthenticated>
+              }
+            />
             <Route
               path="/"
               element={
@@ -66,6 +80,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* Redirecționare implicită spre Home dacă ruta nu este găsită */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Box>
         {showHeaderAndFooter && <Footer />}
