@@ -1,4 +1,3 @@
-// src/pages/EditNote.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,13 +34,11 @@ const EditNote = () => {
     } else {
       dispatch(updateNote(note));
     }
-    // Folosește process.env.PUBLIC_URL pentru a construi calea corectă
-    navigate(`${process.env.PUBLIC_URL}/`);
+    navigate("/");
   };
 
   return (
     <>
-      {/* Stiluri pentru efectele de fade-in */}
       <style>
         {`
           @keyframes fadeIn {
@@ -70,7 +67,7 @@ const EditNote = () => {
           }}
         >
           <IconButton
-            onClick={() => navigate(`${process.env.PUBLIC_URL}/`)}
+            onClick={() => navigate("/")}
             sx={{ color: "#fff" }}
             disableRipple
           >
@@ -93,9 +90,7 @@ const EditNote = () => {
           </Typography>
           {!isNew && (
             <IconButton
-              onClick={() =>
-                navigate(`${process.env.PUBLIC_URL}/view/${note.id}`)
-              }
+              onClick={() => navigate(`/view/${note.id}`)}
               sx={{ color: "#fff" }}
               disableRipple
             >
@@ -120,20 +115,6 @@ const EditNote = () => {
             value={note.title}
             onChange={(e) => setNote({ ...note, title: e.target.value })}
             variant="outlined"
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-                backgroundColor: "#1e1e1e",
-                transition: "box-shadow 0.3s ease",
-                "@media (hover: hover)": {
-                  "&:hover": { boxShadow: "0 4px 8px rgba(0,0,0,0.1)" },
-                },
-                "@media (pointer: coarse)": {
-                  "&:hover": { boxShadow: "none" },
-                },
-                "&.Mui-focused": { boxShadow: "0 6px 12px rgba(0,0,0,0.2)" },
-              },
-            }}
           />
           <TextField
             fullWidth
@@ -143,45 +124,8 @@ const EditNote = () => {
             value={note.content}
             onChange={(e) => setNote({ ...note, content: e.target.value })}
             variant="outlined"
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-                backgroundColor: "#1e1e1e",
-                transition: "box-shadow 0.3s ease",
-                "@media (hover: hover)": {
-                  "&:hover": { boxShadow: "0 4px 8px rgba(0,0,0,0.1)" },
-                },
-                "@media (pointer: coarse)": {
-                  "&:hover": { boxShadow: "none" },
-                },
-                "&.Mui-focused": { boxShadow: "0 6px 12px rgba(0,0,0,0.2)" },
-              },
-            }}
           />
-          <Button
-            variant="contained"
-            onClick={handleSave}
-            sx={{
-              mt: 2,
-              background: "linear-gradient(325deg, #008ba3 0%, #00bcd4 100%)",
-              color: "#fff",
-              padding: "12px 24px",
-              borderRadius: "16px",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-              transition: "all 0.3s ease",
-              "@media (hover: hover)": {
-                "&:hover": {
-                  background:
-                    "linear-gradient(325deg, #00bcd4 0%, #008ba3 100%)",
-                  boxShadow: "0 6px 14px rgba(0,0,0,0.3)",
-                  transform: "scale(1.02)",
-                },
-              },
-              "@media (pointer: coarse)": {
-                "&:hover": { transform: "none" },
-              },
-            }}
-          >
+          <Button variant="contained" onClick={handleSave} sx={{ mt: 2 }}>
             Save
           </Button>
         </Box>

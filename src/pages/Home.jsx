@@ -115,7 +115,7 @@ const Home = () => {
                     }}
                     sx={{
                       "&:hover": {
-                        backgroundColor: "rgba(0,188,212,0.2)",
+                        backgroundColor: "rgba(255, 255, 255, 0.2)",
                         "& svg": { color: "#fff" },
                       },
                     }}

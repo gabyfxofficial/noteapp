@@ -1,4 +1,3 @@
-// src/pages/ViewNote.jsx
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -26,7 +25,6 @@ const ViewNote = () => {
 
   return (
     <>
-      {/* Stiluri pentru a dezactiva efectele de hover pe dispozitive mobile */}
       <style>
         {`
           @media (pointer: coarse) {
@@ -62,7 +60,7 @@ const ViewNote = () => {
         >
           <IconButton
             disableRipple
-            onClick={() => navigate(`${process.env.PUBLIC_URL}/`)}
+            onClick={() => navigate("/")}
             sx={{ color: "#fff" }}
             className="no-move"
           >
@@ -83,9 +81,7 @@ const ViewNote = () => {
           </Typography>
           <IconButton
             disableRipple
-            onClick={() =>
-              navigate(`${process.env.PUBLIC_URL}/edit/${note.id}`)
-            }
+            onClick={() => navigate(`/edit/${note.id}`)}
             sx={{ color: "#fff" }}
             className="no-move"
           >
